@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INE5646">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/vs.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/languages/javascript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script>
+
+    <title>Prática JavaScript Runtime & Async</title>
+
+    <script>
+        hljs.highlightAll();
+        hljs.initLineNumbersOnLoad();
+    </script>
+</head>
+<body>
+    
+<h1>Lista de exercícios sobre JS Runtime e JS assíncrono</h1>
+
+
+<p>Esta lista tem o objetivo de que vocês testem na prática algumas questões de JavaScript, sob a luz da últimas aulas.</p>
+<p>Para cada um dos exercícios, crie um script que execute o código da questão para você ver na prática o resultado.</p>
+<p>Faço isso até mesmo para as questões que possuem a resposta esperada</p>
+<p>Caso alguma resposta esteja diferente do que apareceu quando você rodar o script, me chame...</p>
+
+<p>Recomenda-se também os exercícios apresentados em <a href="https://github.com/lydiahallie/javascript-questions/blob/master/pt-BR/README_pt_BR.md" target="_blank">JavaScript Questions</a> (em português!).
+Em especial, sugiro os exercícios 1, 2, 9, 30, 45 e 73.</p>
+
+<p>Implemente e/ou responda os exercícios propostos no HTML.</p> 
+
+<div class="questao">
+    <h2>Exercício 1. Implemente</h2>
+    <p>Crie uma função calculadora, que recebe 3 parâmetros: valor a, valor b e uma função que fará o cálculo (chamada de f).</p>
+    <p>A chamada dessa função calculadora deve retornar o retorno de f quando recebe os parâmetros a e b</p>
+    <p>Crie também duas funções, soma e subtrai. Ambas recebem dois valores como parâmetro e retornam a soma e a subtração dos valores, respectivamente.</p>
+    <p>
+        Imprima no console o valor retornado pela função calculadora passando os sequintes parâmetros: 
+        <ul>
+            <li>a=31, b=12, f=soma</li>
+            <li>a=11, b=25, f=subtrai</li>
+        </ul>
+
+        <pre><code>
+            function calculadora(a, b, f) {
+                    return f(a, b);
+                }
+
+                function soma(a, b) {
+                    return a + b;
+                }
+
+                function subtrai(a, b) {
+                    return a - b;
+                }
+
+                console.log(calculadora(31, 12, soma));
+                console.log(calculadora(11, 25, subtrai));
+        </code></pre>
+    </p>
+</div>
+
+
+
+<div class="questao">
+    <h2>Exercício 2. Qual a saída no console?</h2>
+
+<pre><code>var callback = function() {
+    console.log("Estou na função de callback");
+}    
+console.log("Iniciei")
+setTimeout(callback, 5000);
+console.log("Estou após o setTimeout")
+</code></pre>
+    <li>
+        Iniciei
+        Estou após o setTimeout
+        Estou na função de callback
+    </li>
+</div>
+
+<div class="questao">
+    <h2>Exercício 3. Qual a saída do console?</h2>
+
+<pre><code>function consoleAtrasado(mensagem, atraso) {
+    setTimeout(console.log(mensagem), atraso)
+}
+console.log("Olá")
+consoleAtrasado("Teste", 10000)
+console.log("Bye")
+</code></pre> 
+    <li>
+        Olá
+        Teste
+        Bye
+    </li>
+</div>
+
+<div class="questao">
+    <h2>Exercício 4. Correção de código</h2>
+
+    <p>Corrija o código do exercício 3 para que a mensagem passada como parâmetro seja exibida no console apenas após o atraso.</p>
+
+    <pre><code>
+        function consoleAtrasado(mensagem, atraso) {
+            setTimeout(() => {
+                console.log(mensagem);
+            }, atraso);
+            }
+
+            console.log("Olá");
+            consoleAtrasado("Teste", 10000);
+            console.log("Bye");
+    </code></pre>
+</div>
+
+
+<div class="questao">
+    <h2>Exercício 5. Qual a versão correta?</h2>
+    <p>Dois colegas seus precisavam escrever um código em JS que deveria escrever "olá" no console e 2 segundos depois escreva "tchau".</p>
+    <p>Um dos seus colegas escreveu o seguinte código:</p>
+
+<pre><code>const olaTchau = () => {
+    console.log("Olá")
+    setTimeout(() => console.log("Tchau"), 2000)
+}
+olaTchau()
+</code></pre> 
+
+    <p>Seu outro colega escreveu:</p>
+    
+<pre><code>const olaETchau = () => {
+    setTimeout(() => console.log("Tchau"), 2000)
+    console.log("Olá")
+}
+olaETchau()
+</code></pre>
+    
+    <p>Como os códigos estão diferentes, eles pediram a sua opinião para dizer qual dos dois funciona. Qual deles está certo?</p>
+    <p>Os dois funcionam porque o setTimeout é assíncrono. Ele agenda a execução da função para depois do atraso especificado e permite que o restante do código continue executando normalmente.</p>
+</div>
+
+<div class="questao">
+    <h2>Exercício 6. Qual a saída no console?</h2>
+
+<pre><code>const resolverEm1s = new Promise(resolve => setTimeout(resolve, 1000));
+for (let i = 0; i < 10; i++) {
+    resolverEm1s.then(() => console.log("oi"))            
+}
+
+    <li>
+        oi
+        oi
+        oi
+        oi
+        oi
+        oi
+        oi
+        oi
+        oi
+        oi
+    </li>
+</code></pre>
+</div>
+
+<div class="questao">
+    <h2>Exercício 7. Qual a saída no console?</h2>
+
+<pre><code>const resolverEm1s = new Promise(resolve => setTimeout(resolve, 1000));
+for (let i = 0; i < 10; i++) {
+    resolverEm1s.then(() => console.log(i))            
+}
+</code></pre>
+    <li>
+        0
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+    </li>
+</div>
+
+<div class="questao">
+    <h2>Exercício 8. Qual a saída no console?</h2>
+
+<pre><code>let i=0
+let max = 10
+function p() {
+    pp = new Promise(resolve => setTimeout(resolve, 1000))
+    pp.then(() => {
+        console.log(i++)
+        if (i < max) {
+            return p()
+        }
+    })
+    return pp
+}        
+p()
+</code></pre>
+    <li>
+        0
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+    </li>
+</div>
+
+<div class="questao">
+    <h2>Exercício 9. Modificação de código</h2>
+    <p>Modifique o código da questão 8 para usar async/await.</p>
+</div>
+
+<pre><code>
+    let i = 0;
+    let max = 10;
+
+    function esperar1s() {
+        return new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    async function p() {
+        while (i < max) {
+            await esperar1s();
+            console.log(i++);
+        }
+    }
+
+    p();
+</code></pre>
+
+</body>
+</html>
