@@ -1,64 +1,165 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATIVIDADE PROGRAMAÇÃO WEB</title>
+    <title>Lucas Feitor | Portfólio</title>
+    <!-- Tipo de letra moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Biblioteca FontAwesome para os ícones sociais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f7f6;
-        color: #333;
-        margin: 0;
-        padding: 50px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .container {
-        background-color: #ffffff;
-        width: 100%;
-        max-width: 600px;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    h1 {
-        color: #2c3e50;
-        margin-bottom: 20px;
-    }
-    p {
-        color: #666;
-        margin-bottom: 30px;
-    }
-    .botao-trabalho {
-        display: block;
-        background-color: #0056b3;
-        color: #ffffff;
-        text-decoration: none;
-        padding: 15px 20px;
-        margin: 10px 0;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-    .botao-trabalho:hover {
-        background-color: #004494;
-        transform: scale(1.02);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; 
+        }
+
+        /* Camada do fundo animado */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        /* Camada da informação (por cima das partículas) */
+        .conteudo {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: rgba(18, 18, 18, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(4px);
+        }
+
+        .foto-perfil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 15%; 
+            border: 2px solid #ffffff;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        p {
+            font-size: 16px;
+            color: #b3b3b3;
+            margin-bottom: 25px;
+        }
+
+        
+        .redes-sociais {
+            margin-bottom: 30px;
+        }
+        .redes-sociais a {
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0 12px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .redes-sociais a:hover {
+            color: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .projetos {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .botao-projeto {
+            background-color: transparent;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .botao-projeto:hover {
+            background-color: #ffffff;
+            color: #121212;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Meus Trabalhos</h1>
-        <p>Selecione um projeto abaixo para acessar.</p>
-		<a href="AA2/index.html" class="botao-trabalho">Trabalho AA2</a>
-        <a href="AA4/index.html" class="botao-trabalho">Trabalho AA4</a>
-        <a href="AA5/" class="botao-trabalho">Trabalho AA5</a>
+    <!-- Contentor para o efeito da constelação -->
+    <div id="particles-js"></div>
+
+    <div class="conteudo">
+        <!-- O nome do ficheiro da sua foto entra aqui -->
+        <img src="lucas.jpeg" alt="Lucas Feitor" class="foto-perfil" onerror="this.src='https://via.placeholder.com/120/333333/FFFFFF?text=LF'">
+        
+        <h1>Lucas Feitor</h1>
+        <p>Sistemas de Informação (UFSC) | Desenvolvedor Python & SQL</p>
+        
+        <div class="redes-sociais">
+            <a href="https://github.com/zoieta26" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/lucas-feitor-a383b11bb/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <div class="projetos">
+            <a href="AA2/index.html" class="botao-projeto">AA2 - Prática: HTML + CSS [Projeto Web]</a>
+            <a href="AA4/index.html" class="botao-projeto">AA4 - Exercícios JavaScript</a>
+            <a href="AA5/index.html" class="botao-projeto">AA5 - Lista de exercícios sobre DOM</a>
+            <a href="AA6/index.html" class="botao-projeto">AA6 - Prática JavaScript (parte 3)</a>
+        </div>
     </div>
 
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
