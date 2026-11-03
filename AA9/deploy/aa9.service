@@ -1,0 +1,22 @@
+[Unit]
+Description=AA9 HTTPS WSS TCP UDP
+After=network.target
+
+[Service]
+Type=simple
+User=aa9
+Group=aa9
+SupplementaryGroups=aa9-tls
+Environment=AA9_HOST=ine5646.lucas.feitor.vms.ufsc.br
+Environment=PYTHONDONTWRITEBYTECODE=1
+WorkingDirectory=/var/www/html/AA/AA9/py
+ExecStart=/opt/aa9/venv/bin/python /var/www/html/AA/AA9/py/server.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

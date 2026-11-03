@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>AA9 · Monitor TCP/UDP</title>
+  <link rel="stylesheet" href="css/ws.css"><link rel="icon" href="favicon.ico">
+  <script src="js/wss.js?v=443" defer></script>
+</head>
+<body>
+<header><div class="container"><p>INE5646 / ATIVIDADE AVALIADA 9</p><h1>Monitor de mensagens TCP/UDP</h1><p>HTTPS · WebSocket seguro · tempo real</p></div></header>
+<main class="container">
+  <section class="server-status" aria-label="Status do servidor">
+    <p role="status"><span id="statusDot" class="status-dot status-offline"></span><span id="statusText">Verificando status do servidor...</span></p>
+    <p id="connectionText">Conectando ao WSS...</p>
+    <div class="server-controls"><button id="startServer" disabled>Iniciar servidor</button><button id="stopServer" disabled>Parar servidor</button><button id="clearMessages">Limpar mensagens</button></div>
+  </section>
+  <section class="connection-stats" aria-label="Mensagens recebidas nesta página">
+    <div class="stat-card"><h2>TCP</h2><div class="count" id="tcpCount">0</div></div>
+    <div class="stat-card"><h2>UDP</h2><div class="count" id="udpCount">0</div></div>
+    <div class="stat-card"><h2>Total</h2><div class="count" id="totalCount">0</div></div>
+  </section>
+  <section class="messages-container">
+    <label for="filter">Exibir mensagens</label>
+    <select id="filter"><option value="all">Todas</option><option value="TCP">TCP</option><option value="UDP">UDP</option></select>
+    <p class="hint">Contadores desde a abertura ou limpeza desta página. São mantidas as últimas 500 mensagens.</p>
+    <div id="messageList" class="message-list" aria-live="polite"></div>
+    <p id="noMessages">Nenhuma mensagem para este filtro.</p>
+  </section>
+  <button id="debugToggle" aria-expanded="false" aria-controls="debugInfo">Exibir informações de depuração</button>
+  <pre id="debugInfo" hidden></pre>
+<p><a href="README.md">Documentação e instalação</a></p>
+</main>
+<footer><p>Autores: Lucas Feitor e Thiago Coutinho da Silva · INE/UFSC · AA9</p></footer>
+</body></html>
